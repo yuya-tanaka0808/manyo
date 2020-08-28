@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+ before_action :find_task, only: [:show]
 
   def index
     @tasks = Task.all
@@ -19,7 +20,7 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to tasks_path,notice: "Posted"
+        redirect_to @task, notice: "Posted"
       else
         render :new
       end
@@ -30,8 +31,13 @@ class TasksController < ApplicationController
 
   end
 
+
   private
   def task_params
     params.require(:task).permit(:title, :content)
+  end
+
+  def find_task
+    @task = Task.find(params[:id])
   end
 end
