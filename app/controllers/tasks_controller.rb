@@ -32,15 +32,21 @@ class TasksController < ApplicationController
   end
 
   def edit
-end
-
-def update
-  if @task.update(task_params)
-    redirect_to tasks_path, notice: "編集しました！"
-  else
-    render :edit
   end
-end
+
+  def update
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: "編集しました！"
+    else
+      render :edit
+    end
+  end
+
+
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, notice: "削除しました！"
+  end
 
 
   private
