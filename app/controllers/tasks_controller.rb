@@ -2,7 +2,7 @@ class TasksController < ApplicationController
  before_action :find_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(id: "DESC")
   end
 
   def new
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
 
   def confirm
     @task = Task.new(task_params)
-    render :new if @task.invalid?    
+    render :new if @task.invalid?
   end
 
   private
