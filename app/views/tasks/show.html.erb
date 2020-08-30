@@ -1,0 +1,9 @@
+<h1>Task 詳細</h1>
+
+<p>タイトル：<%= @task.title %></p>
+<p>内容：<%= @task.content %></p>
+<p>作成日時；<%= @task.created_at %></p>
+<p>期限：<%= @task.time_limit %></p>
+<p>優先度：<%= @task.priority %></p>
+<p>状態：<%= @task.status %></p>
+<%= link_to 'back', tasks_path %>
