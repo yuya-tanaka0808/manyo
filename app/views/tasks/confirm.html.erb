@@ -1,9 +1,9 @@
-<h1>確認画面</h1>
+<h1><%= t('view_title.models.task.confirm') %></h1>
 <%= form_with(model: @task, url: confirm_new_or_edit, local: true) do |form| %>
   <%= form.hidden_field :title %>
-  <p>タイトル：<%= @task.title %></p>
+  <p><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
   <%= form.hidden_field :content %>
-  <p>本文：<%= @task.content %></p>
-  <%= form.submit "投稿する" %>
-  <%= form.submit "戻る", name: "back" %>
+  <p><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
+  <%= form.submit t('helpers.submit.submit') %>
+  <%= form.submit t('helpers.select.back'), name: "back" %>
 <% end %>

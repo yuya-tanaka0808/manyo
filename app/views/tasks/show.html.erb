@@ -1,9 +1,9 @@
-<h1>Task 詳細</h1>
+<h1><%= t('view_title.models.task.show') %></h1>
 
-<p>タイトル：<%= @task.title %></p>
-<p>内容：<%= @task.content %></p>
-<p>作成日時；<%= @task.created_at %></p>
-<p>期限：<%= @task.time_limit %></p>
-<p>優先度：<%= @task.priority %></p>
-<p>状態：<%= @task.status %></p>
+<p><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
+<p><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
+<p><%= t('activerecord.attributes.task.created_at') %>；<%= @task.created_at %></p>
+<p><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
+<p><%= t('activerecord.attributes.task.priority') %>：<%= @task.priority %></p>
+<p><%= t('activerecord.attributes.task.status') %>：<%= @task.status %></p>
 <%= link_to t('helpers.select.back'), tasks_path %>

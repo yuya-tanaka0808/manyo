@@ -13,6 +13,7 @@ ja:
         show: タスク詳細
         new: 新しいタスクを作成
         edit: タスクを編集する
+        confirm: タスク投稿確認
   activerecord:
     errors:
       messages:
