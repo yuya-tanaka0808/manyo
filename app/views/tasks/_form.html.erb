@@ -2,7 +2,7 @@
   <%= form_with(model: task, local: true, url:confirm_new_or_edit) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= @task.errors.count %><%= t('errors.messages.count_of_errors') %></h2>
       <ul>
         <% task.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -13,11 +13,11 @@
   <table>
       <br>
       <tr>
-        <th class="title"><%= form.label :"タイトル" %></th>
+        <th class="title"><%= form.label :title %></th>
         <td class="title"><%= form.text_field :title %></td>
       </tr>
       <tr>
-        <th class="content"><%= form.label :"内容" %></th>
+        <th class="content"><%= form.label :content %></th>
         <td class="content"><%= form.text_field :content %></td>
       </tr>
     </table>

@@ -1,6 +1,6 @@
-<h1>Task edit</h1>
+<h1><%= t('view_title.models.task.edit') %></h1>
 
 <%= render 'form', task: @task %>
 
-<%= link_to 'show', @task %>
-<%= link_to 'Back', tasks_path %>
+<%= link_to t('helpers.select.show'), @task %>
+<%= link_to t('helpers.select.back'), tasks_path %>
