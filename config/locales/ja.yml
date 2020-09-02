@@ -6,13 +6,17 @@ ja:
         new: タスクを作成する
   delete?: 本当に削除しますか？
   edit?: 本当に編集しますか？
+  notice:
+    new: タスクが追加されました！
+    edit: タスクが編集されました！
+    delete: タスクが削除されました！
   view_title:
     models:
       task:
         index: タスク一覧
         show: タスク詳細
-        new: 新しいタスクを作成
-        edit: タスクを編集する
+        new: タスク作成
+        edit: タスク編集
         confirm: タスク投稿確認
   activerecord:
     errors:
