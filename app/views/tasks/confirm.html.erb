@@ -4,6 +4,8 @@
   <p><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
   <%= form.hidden_field :content %>
   <p><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
+  <%= form.hidden_field :time_limit %>
+  <p><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
   <%= form.submit t('helpers.submit.submit') %>
   <%= form.submit t('helpers.select.back'), name: "back" %>
 <% end %>
