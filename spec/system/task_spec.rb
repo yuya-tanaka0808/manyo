@@ -13,6 +13,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_title', with: 'test'
         fill_in 'task_content', with: 'testcontent'
+        binding.irb
         select 2018, from: 'task_time_limit_1i'
         click_on '投稿する' #new画面
         click_on '保存する' #confirm画面
