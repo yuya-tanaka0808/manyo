@@ -2,16 +2,20 @@ class TasksController < ApplicationController
  before_action :find_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order(id: "DESC")
+    if params[:sort_expired]
+      @tasks = Task.all.order(time_limit: "ASC")
+    else
+      @tasks = Task.all.order(id: "DESC")
+    end
   end
 
   def new
-    # if params[:back]
-    #   @task = Task.new(task_params)
-    # else
-    #   @task = Task.new
-    # end
-    @task = Task.new
+    if params[:back]
+      @task = Task.new(task_params)
+    else
+      @task = Task.new
+    end
+    # @task = Task.new
   end
 
   def create

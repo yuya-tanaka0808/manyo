@@ -4,6 +4,7 @@ ja:
     models:
       task:
         new: タスクを作成する
+        sort_by_timelimit: 終了期限で並べ替える
   delete?: 本当に削除しますか？
   edit?: 本当に編集しますか？
   notice:
