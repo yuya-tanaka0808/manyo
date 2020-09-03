@@ -2,9 +2,6 @@ FactoryBot.define do
   factory :task do
     title { 'Factoryで作成したデフォルトタイトル１' }
     content { 'Factoryで作成したデフォルトコンテント１' }
-  end
-  factory :second_task, class: Task do
-    title { 'Factoryで作ったデフォルトのタイトル２' }
-    content { 'Factoryで作ったデフォルトのコンテント２' }
+    time_limit { '2020-09-30 12:00:00' }
   end
 end
