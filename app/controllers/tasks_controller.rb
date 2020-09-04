@@ -4,9 +4,15 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired]
       @tasks = Task.all.order(time_limit: "DESC")
+    elsif params[:serch].present?
+      @tasks = Task.serch_title(params[:serch][:title])
     else
       @tasks = Task.all.order(id: "DESC")
     end
+    #
+    # if params[:task].present?
+    #   @tasks = serch_title(params[:serch_title])
+    # end
   end
 
   def new

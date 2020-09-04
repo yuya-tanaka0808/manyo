@@ -1,6 +1,11 @@
 <h1><%= t('view_title.models.task.index') %></h1>
 <p id="notice"><%= notice %></p>
-<%= link_to t('view.models.task.sort_by_timelimit'), tasks_path(sort_expired: "true") %>
+<%= form_with(scope: :serch, url: tasks_path, method: :get, local: true) do |f| %>
+<%= f.label :title, t('serch.serch_title') %>
+<%= f.text_field :title, placeholder: t('serch.enter_title') %>
+<%= f.submit t('serch.do_a_serch') %>
+<%= link_to t('serch.sort_by_timelimit'), tasks_path(sort_expired: "true") %>
+<% end %>
 <table class = "task_row">
   <thead>
     <tr>
