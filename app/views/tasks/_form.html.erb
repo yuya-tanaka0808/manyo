@@ -24,6 +24,10 @@
         <th class="task_time_limit"><%= form.label :time_limit %></th>
         <td class="task_time_limit"><%= form.datetime_select :time_limit %></td>
       </tr>
+      <tr>
+        <th class="status"><%= form.label :status %></th>
+        <td class="status"><%= form.select :status,["未着手","着手中","完了"] %></td>
+      </tr>
     </table>
     <div class="field">
 
