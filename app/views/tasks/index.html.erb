@@ -3,6 +3,10 @@
 <%= form_with(scope: :serch, url: tasks_path, method: :get, local: true) do |f| %>
 <%= f.label :title, t('serch.serch_title') %>
 <%= f.text_field :title, placeholder: t('serch.enter_title') %>
+<%= f.label :status, t('serch.serch_status') %>
+<%= f.select :status,[[t('serch.waiting')],
+                     [t('serch.working')],
+                     [t('serch.completed')]], include_blank: true %>
 <%= f.submit t('serch.do_a_serch') %>
 <%= link_to t('serch.sort_by_timelimit'), tasks_path(sort_expired: "true") %>
 <% end %>

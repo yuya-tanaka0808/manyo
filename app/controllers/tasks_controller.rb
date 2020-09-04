@@ -5,7 +5,13 @@ class TasksController < ApplicationController
     if params[:sort_expired]
       @tasks = Task.all.order(time_limit: "DESC")
     elsif params[:serch].present?
-      @tasks = Task.serch_title(params[:serch][:title])
+      if params[:serch][:title].present? && params[:serch][:status].present?
+        @tasks = Task.serch_title(params[:serch][:title]).serch_status(params[:serch][:status])
+      elsif params[:serch][:title].present?
+        @tasks = Task.serch_title(params[:serch][:title])
+      else params[:serch][:status].present?
+        @tasks = Task.serch_status(params[:serch][:status])
+      end
     else
       @tasks = Task.all.order(id: "DESC")
     end
