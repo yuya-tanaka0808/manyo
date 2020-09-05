@@ -8,7 +8,8 @@ ja:
   edit?: 本当に編集しますか？
   serch:
     serch_title: タスク名検索
-    sort_by_timelimit: 終了期限で並べ替える
+    sort_by_timelimit: 終了期限で並べ替え
+    sort_by_priority: 優先度順に並べ替え
     enter_title: タスク名を入力
     do_a_serch: 検索
     serch_status: 状態選択
