@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task1) {FactoryBot.create(:task, title: 'task1',content: 'content1-old', time_limit: '2019-10-01 12:00:00')}
-  let!(:task2) {FactoryBot.create(:task, title: 'task2',content: 'content2-future', time_limit: '2021-10-01 12:00:00')}
-  let!(:task3) {FactoryBot.create(:task, title: 'task3',content: 'content3-now', time_limit: '2020-10-01 12:00:00')}
+  let!(:task1) {FactoryBot.create(:task, title: 'task1',content: 'content1-old', time_limit: '2019-10-01 12:00:00', status: '未着手')}
+  let!(:task2) {FactoryBot.create(:task, title: 'task2',content: 'content2-future', time_limit: '2021-10-01 12:00:00', status: '完了')}
+  let!(:task3) {FactoryBot.create(:task, title: 'task3',content: 'content3-now', time_limit: '2020-10-01 12:00:00', status: '未着手')}
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -13,12 +13,13 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task_title', with: 'test'
         fill_in 'task_content', with: 'testcontent'
-        binding.irb
         select 2018, from: 'task_time_limit_1i'
+        select '着手中', from: 'task_status'
         click_on '投稿する' #new画面
         click_on '保存する' #confirm画面
         expect(page).to have_content 'testcontent'
         expect(page).to have_content 2018
+        expect(page).to have_content '着手中'
       end
     end
   end
@@ -51,6 +52,33 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row_timelimit')
         expect(task_list[0]).to have_content '2021/10/01'
         expect(task_list[1]).to have_content '2020/10/01'
+      end
+    end
+  end
+  describe '検索機能' do
+    context 'タイトルであいまい検索した場合' do
+      it '検索ワードを含むタスク名だけ表示' do
+        visit tasks_path
+        fill_in :serch_title, with: 'task1'
+        click_on '検索'
+        expect(page).to have_content 'old'
+      end
+    end
+    context '状態選択で検索した場合' do
+      it '選択した状態と一致するタスク名だけ表示' do
+        visit tasks_path
+        select '完了', from: 'serch_status'
+        click_on '検索'
+        expect(page).to have_content 'future'
+      end
+    end
+    context 'タイトルであいまい検索＋状態選択で検索した場合' do
+      it '検索ワードを含み、かつ選択した状態と一致するタスク名だけ表示' do
+        visit tasks_path
+        fill_in :serch_title, with: '3'
+        select '未着手', from: 'serch_status'
+        click_on '検索'
+        expect(page).to have_content 'now'
       end
     end
   end
