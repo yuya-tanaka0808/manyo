@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task1) {FactoryBot.create(:task, title: 'task1',content: 'content1-old', time_limit: '2019-10-01 12:00:00', status: '未着手')}
-  let!(:task2) {FactoryBot.create(:task, title: 'task2',content: 'content2-future', time_limit: '2021-10-01 12:00:00', status: '完了')}
-  let!(:task3) {FactoryBot.create(:task, title: 'task3',content: 'content3-now', time_limit: '2020-10-01 12:00:00', status: '未着手')}
+  let!(:task1) {FactoryBot.create(:task, title: 'task1',content: 'content1-old', time_limit: '2019-10-01 12:00:00', status: '未着手', priority: '高')}
+  let!(:task2) {FactoryBot.create(:task, title: 'task2',content: 'content2-future', time_limit: '2021-10-01 12:00:00', status: '完了', priority: '低')}
+  let!(:task3) {FactoryBot.create(:task, title: 'task3',content: 'content3-now', time_limit: '2020-10-01 12:00:00', status: '未着手',priority: '中')}
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -27,7 +27,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         #テストで使用するためタスク作成
-        task = FactoryBot.create(:task, title: 'task10', content: 'content10', time_limit: '2020-09-01 13:00:00')
+        task = FactoryBot.create(:task, title: 'task10', content: 'content10', time_limit: '2020-09-01 13:00:00', status: '未着手', priority: '高')
         visit tasks_path
         #タスク一覧ページに遷移出来ているか確認
         current_path
@@ -52,6 +52,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row_timelimit')
         expect(task_list[0]).to have_content '2021/10/01'
         expect(task_list[1]).to have_content '2020/10/01'
+      end
+    end
+    context '優先度順でソートした場合' do
+      it 'タスクが優先度順の昇順で並んでいること' do
+        visit tasks_path(sort_priority: "true")
+        task_list = all('.task_row_priority')
+        sleep 1
+        expect(task_list[0]).to have_content '高'
+        expect(task_list[1]).to have_content '中'
       end
     end
   end
@@ -85,7 +94,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
-         task = FactoryBot.create(:task, title: 'task5', content:'content5-show')
+         task = FactoryBot.create(:task, title: 'task5', content:'content5-show', time_limit: '2020-10-01 12:00:00', status: '未着手',priority: '中')
          visit task_path(task.id)
          expect(page).to have_content 'show'
        end
