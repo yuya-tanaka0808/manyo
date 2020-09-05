@@ -8,6 +8,8 @@
   <p><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
   <%= form.hidden_field :status %>
   <p><%= t('activerecord.attributes.task.status') %>：<%= @task.status %></p>
+  <%= form.hidden_field :priority %>
+  <p><%= t('activerecord.attributes.task.priority') %>：<%= @task.priority %></p>
   <%= form.submit t('helpers.submit.submit') %>
   <%= form.submit t('helpers.select.back'), name: "back" %>
 <% end %>

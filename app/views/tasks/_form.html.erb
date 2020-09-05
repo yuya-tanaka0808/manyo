@@ -28,6 +28,10 @@
         <th class="status"><%= form.label :status %></th>
         <td class="status"><%= form.select :status,["未着手","着手中","完了"] %></td>
       </tr>
+      <tr>
+        <th class="priority"><%= form.label :priority %></th>
+        <td class="priority"><%= form.select :priority,["高","中","低"] %></td>
+      </tr>
     </table>
     <div class="field">
 
