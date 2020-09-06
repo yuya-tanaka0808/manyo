@@ -1,7 +1,7 @@
-<h2><%= t('view_title.models.task.new') %></h2>
+<h2 class = "center"><%= t('view_title.models.task.new') %></h2>
 
 <%= render 'form', task: @task %>
 
-<div class="link">
+<div class="link center">
   <%= link_to t('helpers.select.back'), tasks_path %>
 </div>

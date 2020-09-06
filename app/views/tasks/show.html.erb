@@ -1,9 +1,12 @@
-<h1><%= t('view_title.models.task.show') %></h1>
+<h1 class = "center"><%= t('view_title.models.task.show') %></h1>
 
-<p><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
-<p><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
-<p><%= t('activerecord.attributes.task.created_at') %>；<%= @task.created_at %></p>
-<p><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
-<p><%= t('activerecord.attributes.task.priority') %>：<%= @task.priority %></p>
-<p><%= t('activerecord.attributes.task.status') %>：<%= @task.status %></p>
-<%= link_to t('helpers.select.back'), tasks_path %>
+<p class = " center"><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
+<p class = " center"><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
+<p class = " center"><%= t('activerecord.attributes.task.created_at') %>；<%= @task.created_at %></p>
+<p class = " center"><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
+<p class = " center"><%= t('activerecord.attributes.task.priority') %>：<%= @task.priority %></p>
+<p class = " center"><%= t('activerecord.attributes.task.status') %>：<%= @task.status %></p>
+
+<div class="center">
+  <%= link_to t('helpers.select.back'), tasks_path %>
+</div>

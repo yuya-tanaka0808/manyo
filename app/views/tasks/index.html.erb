@@ -1,5 +1,8 @@
-<h1><%= t('view_title.models.task.index') %></h1>
-<p id="notice"><%= notice %></p>
+<h1 class = "center"><%= t('view_title.models.task.index') %></h1>
+<p class = "center" id="notice"><%= notice %></p>
+<div class = "center">
+
+
 <%= form_with(scope: :serch, url: tasks_path, method: :get, local: true) do |f| %>
 <%= f.label :title, t('serch.serch_title') %>
 <%= f.text_field :title, placeholder: t('serch.enter_title') %>
@@ -9,41 +12,43 @@
                      [t('serch.completed')]], include_blank: true %>
 
 <%= f.submit t('serch.do_a_serch') %>
-<%= link_to t('serch.sort_by_timelimit'), tasks_path(sort_expired: "true") %>
-<%= link_to t('serch.sort_by_priority'), tasks_path(sort_priority: "true") %>
+</div>
+<br>
+<!-- <%= link_to t('serch.sort_by_timelimit'), tasks_path(sort_expired: "true") %> -->
+<!-- <%= link_to t('serch.sort_by_priority'), tasks_path(sort_priority: "true") %> -->
 <% end %>
-<table class = "task_row">
+<table class = "task_row center">
   <thead>
     <tr>
-      <th><%= t('activerecord.attributes.task.id') %></th>
+      <th><%= link_to t('activerecord.attributes.task.priority'), tasks_path(sort_priority: "true") %></th>
+      <!-- <th><%= t('activerecord.attributes.task.id') %></th> -->
       <th><%= t('activerecord.attributes.task.title') %></th>
       <th><%= t('activerecord.attributes.task.content') %></th>
-      <th><%= t('activerecord.attributes.task.time_limit') %></th>
+      <th><%= link_to t('activerecord.attributes.task.time_limit'),tasks_path(sort_expired: "true")  %></th>
       <th><%= t('activerecord.attributes.task.status') %></th>
-      <th><%= t('activerecord.attributes.task.priority') %></th>
       <th><%= t('activerecord.attributes.task.created_at') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
-    <tr>
-      <td><%= task.id %>*</td>
+    <tr class = "task_container">
+      <td class = "task_row_priority"><%= task.priority %>*</td>
+      <!-- <td><%= task.id %>*</td> -->
       <td><%= task.title %>*</td>
       <td><%= task.content %>*</td>
       <td class = "task_row_timelimit"><%= l task.time_limit, format: :short %>*</td>
       <td class = "task_status"><%= task.status %>*</td>
-      <td class = "task_row_priority"><%= task.priority %>*</td>
-      <td><%= l task.created_at, format: :default %></td>
-      <td><%= link_to t('helpers.select.show'), task_path(task.id) %></td>
-      <td><%= link_to t('helpers.select.edit'), edit_task_path(task), date: {confirm: t('edit?')} %></td>
-      <td><%= link_to t('helpers.select.destroy'), task, method: :delete, data: {confirm: t('delete?')} %></td>
+      <td><%= l task.created_at, format: :short %></td>
+      <td><button type="button" class="btn btn-default btn-block margin-left"><%= link_to t('helpers.select.show'), task_path(task.id) %></button></td>
+      <td><button type="button" class="btn btn-default btn-block margin-left"><%= link_to t('helpers.select.edit'), edit_task_path(task), date: {confirm: t('edit?')} %></button></td>
+      <td><button type="button" class="btn btn-default btn-block margin-left"><%= link_to t('helpers.select.destroy'), task, method: :delete, data: {confirm: t('delete?')} %></button></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 <%= paginate @tasks %>
 
-  <div class="link">
+  <div class="link center">
     <%= link_to t('view.models.task.new'), new_task_path %>
   </div>
