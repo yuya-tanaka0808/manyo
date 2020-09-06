@@ -2,16 +2,34 @@ class TasksController < ApplicationController
  before_action :find_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all.order(id: "DESC")
+    if params[:sort_expired]
+      @tasks = Task.all.order(time_limit: "DESC").page(params[:page]).per(10)
+    elsif params[:sort_priority]
+      @tasks = Task.all.order(priority: "ASC").page(params[:page]).per(10)
+    elsif params[:serch].present?
+      if params[:serch][:title].present? && params[:serch][:status].present?
+        @tasks = Task.serch_title(params[:serch][:title]).serch_status(params[:serch][:status]).page(params[:page]).per(10)
+      elsif params[:serch][:title].present?
+        @tasks = Task.serch_title(params[:serch][:title]).page(params[:page]).per(10)
+      else params[:serch][:status].present?
+        @tasks = Task.serch_status(params[:serch][:status]).page(params[:page]).per(10)
+      end
+    else
+      @tasks = Task.all.order(id: "DESC").page(params[:page]).per(10)
+    end
+    #
+    # if params[:task].present?
+    #   @tasks = serch_title(params[:serch_title])
+    # end
   end
 
   def new
-    # if params[:back]
-    #   @task = Task.new(task_params)
-    # else
-    #   @task = Task.new
-    # end
-    @task = Task.new
+    if params[:back]
+      @task = Task.new(task_params)
+    else
+      @task = Task.new
+    end
+    # @task = Task.new
   end
 
   def create
@@ -53,7 +71,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :time_limit, :status, :priority)
   end
 
   def find_task

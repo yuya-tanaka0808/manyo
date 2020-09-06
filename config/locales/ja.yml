@@ -6,6 +6,16 @@ ja:
         new: タスクを作成する
   delete?: 本当に削除しますか？
   edit?: 本当に編集しますか？
+  serch:
+    serch_title: タスク名検索
+    sort_by_timelimit: 終了期限で並べ替え
+    sort_by_priority: 優先度順に並べ替え
+    enter_title: タスク名を入力
+    do_a_serch: 検索
+    serch_status: 状態選択
+    waiting: 未着手
+    working: 着手中
+    completed: 完了
   notice:
     new: タスクが追加されました！
     edit: タスクが編集されました！

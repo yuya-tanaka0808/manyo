@@ -1,3 +1,19 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+// .margin-left {
+//   margin-left: 3px;
+//   // display: block;
+// }
+
+.task_container {
+  border-bottom: 1px solid silver;
+}
+.center {
+  margin:auto;
+  text-align: center;
+}
+.block {
+  display: block;
+}
