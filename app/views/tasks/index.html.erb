@@ -42,6 +42,8 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @tasks %>
+
   <div class="link">
     <%= link_to t('view.models.task.new'), new_task_path %>
   </div>
