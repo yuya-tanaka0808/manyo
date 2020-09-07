@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  def authenticate_user
+  def login_required
    # 現在ログイン中のユーザが存在しない場合、ログインページにリダイレクトさせる。
     if @current_user == nil
       flash[:notice] = t('notice.login_needed')

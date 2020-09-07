@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
  before_action :find_task, only: [:show, :edit, :update, :destroy]
+ before_action :current_user
+ before_action :login_required
 
   def index
     if params[:sort_expired]
