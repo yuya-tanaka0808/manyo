@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    login_checker
   end
 
   def create
@@ -18,6 +19,14 @@ class SessionsController < ApplicationController
    session.delete(:user_id)
    flash[:notice] = 'ログアウトしました'
    redirect_to new_session_path
+ end
+
+ private
+ def login_checker
+   if logged_in?
+     flash[:notice] = 'ログイン中です'
+     redirect_to tasks_path
+   end
  end
 
 end
