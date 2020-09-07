@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-   before_action :find_user, only:[:show]
+  before_action :find_user, only:[:show]
+  before_action :current_user
+  before_action :user_checker
 
   def new
     @user = User.new
@@ -25,6 +27,13 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def user_checker
+    if current_user.id != @user.id
+      flash[:notice] =  "権限がありません"
+      redirect_to tasks_path
+    end
   end
 
 end
