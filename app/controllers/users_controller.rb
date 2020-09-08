@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def user_checker
-    if current_user.id != @user.id
+    if current_user != @user
       flash[:notice] =  "権限がありません"
       redirect_to tasks_path
     end
