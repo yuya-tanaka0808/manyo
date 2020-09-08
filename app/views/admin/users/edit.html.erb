@@ -1,6 +1,22 @@
-<h1 class = "center"><%= t('view_title.models.task.edit') %></h1>
+<h1 class = "center">ユーザー編集 </h1>
 
-<%= render 'form', user: @user %>
+<%= form_with(model: @user, local: true, method: "get") do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.hidden_field :password %>
+  <%= f.hidden_field :password_confirmation %>
+
+  <%= f.label :admin %>
+  <%= f.check_box :admin, {}, 'true', 'false' %>
+
+  <%= f.submit "edit account" %>
+<% end %>
+
 
 <div class="center">
   <%= link_to t('helpers.select.show'), admin_user_path %>

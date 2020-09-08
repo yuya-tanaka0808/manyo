@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
   before_action :if_not_admin
-  before_action :set_user, only: [:show, :edit, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.select(:name, :id)
+    @tasks = Task.includes(:user)
   end
 
   def new
@@ -13,14 +14,14 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
       redirect_to user_path(@user.id)
     else
-      render 'new'
+      render :new
     end
   end
 
   def show
+    @tasks = Task.where(user_id: @user.id)
   end
 
   def edit
@@ -50,7 +51,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
 end

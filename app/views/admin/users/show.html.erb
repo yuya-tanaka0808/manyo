@@ -1,4 +1,36 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
+
+
+<table class = "task_row center">
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.task.priority') %></th>
+      <!-- <th><%= t('activerecord.attributes.task.id') %></th> -->
+      <th><%= t('activerecord.attributes.task.title') %></th>
+      <th><%= t('activerecord.attributes.task.content') %></th>
+      <th><%= t('activerecord.attributes.task.time_limit')  %></th>
+      <th><%= t('activerecord.attributes.task.status') %></th>
+      <th><%= t('activerecord.attributes.task.created_at') %></th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr class = "task_container">
+      <td class = "task_row_priority"><%= task.priority %>*</td>
+      <!-- <td><%= task.id %>*</td> -->
+      <td><%= task.title %>*</td>
+      <td><%= task.content %>*</td>
+      <td class = "task_row_timelimit"><%= l task.time_limit, format: :short %>*</td>
+      <td class = "task_status"><%= task.status %>*</td>
+      <td><%= l task.created_at, format: :short %></td>
+
+      <td><button type="button" class="btn btn-default btn-block margin-left"><%= link_to t('helpers.select.show'), task_path(task.id) %></button></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'ユーザー一覧', admin_users_path %>
