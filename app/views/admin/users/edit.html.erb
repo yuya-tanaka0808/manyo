@@ -1,0 +1,8 @@
+<h1 class = "center"><%= t('view_title.models.task.edit') %></h1>
+
+<%= render 'form', user: @user %>
+
+<div class="center">
+  <%= link_to t('helpers.select.show'), admin_user_path %>
+  <%= link_to t('helpers.select.back'), admin_users_path %>
+</div>
