@@ -1,6 +1,6 @@
 <h1 class = "center">ユーザー編集 </h1>
 
-<%= form_with(model: @user, local: true, method: "get") do |f| %>
+<%= form_with(model: @user,url: admin_user_path, local: true) do |f| %>
 
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -8,8 +8,8 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 
-  <%= f.hidden_field :password %>
-  <%= f.hidden_field :password_confirmation %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
 
   <%= f.label :admin %>
   <%= f.check_box :admin, {}, 'true', 'false' %>

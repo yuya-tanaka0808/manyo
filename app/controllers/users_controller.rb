@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only:[:show]
+  before_action :find_user, only:[:show, :edit, :update]
   before_action :current_user
-  before_action :user_checker
 
   def new
     @user = User.new
@@ -20,6 +19,17 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to admin_user_path
+    else
+      render :edit
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -29,11 +39,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_checker
-    if current_user != @user
-      flash[:notice] =  "権限がありません"
-      redirect_to tasks_path
-    end
-  end
+
 
 end
