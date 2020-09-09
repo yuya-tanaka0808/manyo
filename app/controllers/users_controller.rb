@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :current_user
 
   def new
+    login_checker
     @user = User.new
   end
 
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    user_checker
   end
 
   def edit
@@ -38,7 +40,5 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
-
-
 
 end
