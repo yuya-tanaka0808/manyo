@@ -3,8 +3,9 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.select(:name, :id)
-    @tasks = Task.includes(:user)
+    # @users = User.select(:name, :id)
+    # @tasks = Task.includes(:user)
+    @users = User.includes(:tasks)
   end
 
   def new
@@ -28,8 +29,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    puts @user
     if @user.update(user_params)
-      redirect_to admin_user_path(@user.id)
+      redirect_to admin_user_path
     else
       render :edit
     end
@@ -39,7 +41,6 @@ class Admin::UsersController < ApplicationController
     @user.destroy
     redirect_to admin_users_path, notice:"ユーザーを削除しました"
   end
-
 
   private
   def if_not_admin
