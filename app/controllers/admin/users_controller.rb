@@ -44,7 +44,10 @@ class Admin::UsersController < ApplicationController
 
   private
   def if_not_admin
-    redirect_to root_path unless current_user.admin?
+    unless current_user.admin?
+      flash[:notice] = "管理者以外アクセスできません！"
+      redirect_to root_path
+    end
   end
 
   def set_user
