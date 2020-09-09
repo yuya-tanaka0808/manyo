@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       task: タスク
+      user: ユーザー
     attributes:
       task:
         title: タスク名
@@ -11,3 +12,9 @@ ja:
         priority: 優先度
         time_limit: 期限
         status: 状態
+      user:
+        id: ユーザーID
+        name: ユーザー名
+        created_at: 登録日時
+        updated_at: 更新日時
+        admin: 管理者権限

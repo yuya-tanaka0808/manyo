@@ -2,8 +2,12 @@
 ja:
   view:
     models:
+      all:
+        page: のページ
       task:
         new: タスクを作成する
+      admin_user:
+        have_task_counts: 所持タスク数
   delete?: 本当に削除しますか？
   edit?: 本当に編集しますか？
   serch:
@@ -29,6 +33,9 @@ ja:
         new: タスク作成
         edit: タスク編集
         confirm: タスク投稿確認
+      admin_user:
+        index: ユーザー管理一覧画面
+        edit: ユーザー編集
   activerecord:
     errors:
       messages:
@@ -180,6 +187,8 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      create_account: アカウントを作成する
+      edit_account: アカウントを編集する
   number:
     currency:
       format:

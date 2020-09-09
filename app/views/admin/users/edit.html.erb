@@ -1,5 +1,4 @@
-<h1 class = "center">ユーザー編集 </h1>
-
+<h1 class = "center"><%= t('view_title.models.admin_user.edit') %></h1>
 <%= form_with(model: @user,url: admin_user_path, local: true) do |f| %>
 
   <%= f.label :name %>
@@ -8,15 +7,17 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 
+  <%= f.label :password %>
   <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
   <%= f.label :admin %>
   <%= f.check_box :admin, {}, 'true', 'false' %>
 
-  <%= f.submit "edit account" %>
+  <%= f.submit t('helpers.submit.edit_account') %>
 <% end %>
-
 
 <div class="center">
   <%= link_to t('helpers.select.show'), admin_user_path %>
