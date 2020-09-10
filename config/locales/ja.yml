@@ -6,8 +6,11 @@ ja:
         page: のページ
       task:
         new: タスクを作成する
-      admin_user:
+      admin:
+        destroy: ユーザーを削除しました
         have_task_counts: 所持タスク数
+        administrator_users_cannot_be_deleted: 管理者が一人以上必要なため、削除できません
+        administrator_users_cannot_be_edited: 管理者が一人以上必要なため、権限の変更はできません
   delete?: 本当に削除しますか？
   edit?: 本当に編集しますか？
   serch:

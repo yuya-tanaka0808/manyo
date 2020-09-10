@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
-  before_action :if_not_admin
+  before_action :current_user
+  before_action :if_not_admin, only: [:index, :new, :show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -33,6 +34,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_user_path
     else
+      flash[:notice] = t('view.models.admin.administrator_users_cannot_be_edited')
       render :edit
     end
   end
