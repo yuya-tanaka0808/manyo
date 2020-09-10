@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :current_user
-  before_action :if_not_admin, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :if_not_admin, only: [:index, :new,:create, :show, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user.id)
+      redirect_to admin_users_path
     else
       render :new
     end
