@@ -1,8 +1,20 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task1) {FactoryBot.create(:task, title: 'task1',content: 'content1-old', time_limit: '2019-10-01 12:00:00', status: '未着手', priority: '高')}
-  let!(:task2) {FactoryBot.create(:task, title: 'task2',content: 'content2-future', time_limit: '2021-10-01 12:00:00', status: '完了', priority: '低')}
-  let!(:task3) {FactoryBot.create(:task, title: 'task3',content: 'content3-now', time_limit: '2020-10-01 12:00:00', status: '未着手',priority: '中')}
+  before do
+    @user = FactoryBot.create(:user)
+    visit new_session_path
+    fill_in 'session_email', with: 'user1@example.com'
+    fill_in 'session_password', with: 'password'
+    click_on 'Log in'
+    sleep 0.5
+    visit tasks_path
+    # FactoryBot.create(:task1)
+    # FactoryBot.create(:task2)
+    # FactoryBot.create(:task3)
+  end
+  let!(:task1){ FactoryBot.create(:task1) }
+  let!(:task2){ FactoryBot.create(:task2) }
+  let!(:task3){ FactoryBot.create(:task3) }
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
@@ -15,7 +27,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'task_content', with: 'testcontent'
         select 2018, from: 'task_time_limit_1i'
         select '着手中', from: 'task_status'
-        click_on '投稿する' #new画面
+        click_on '保存する' #new画面
         click_on '保存する' #confirm画面
         expect(page).to have_content 'testcontent'
         expect(page).to have_content 2018
