@@ -39,6 +39,10 @@ ja:
       admin_user:
         index: ユーザー管理一覧画面
         edit: ユーザー編集
+      label:
+        index: ラベル一覧
+        new: 新規ラベル作成
+        edit: ラベル編集
   activerecord:
     errors:
       messages:
