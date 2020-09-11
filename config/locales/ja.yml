@@ -2,8 +2,15 @@
 ja:
   view:
     models:
+      all:
+        page: のページ
       task:
         new: タスクを作成する
+      admin:
+        destroy: ユーザーを削除しました
+        have_task_counts: 所持タスク数
+        administrator_users_cannot_be_deleted: 管理者が一人以上必要なため、削除できません
+        administrator_users_cannot_be_edited: 管理者が一人以上必要なため、権限の変更はできません
   delete?: 本当に削除しますか？
   edit?: 本当に編集しますか？
   serch:
@@ -20,6 +27,7 @@ ja:
     new: タスクが追加されました！
     edit: タスクが編集されました！
     delete: タスクが削除されました！
+    login_needed: ログインしてください。
   view_title:
     models:
       task:
@@ -28,6 +36,9 @@ ja:
         new: タスク作成
         edit: タスク編集
         confirm: タスク投稿確認
+      admin_user:
+        index: ユーザー管理一覧画面
+        edit: ユーザー編集
   activerecord:
     errors:
       messages:
@@ -179,6 +190,8 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      create_account: アカウントを作成する
+      edit_account: アカウントを編集する
   number:
     currency:
       format:
