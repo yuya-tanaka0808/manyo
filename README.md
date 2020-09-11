@@ -23,13 +23,18 @@
 |email|string|
 |password_digest|string|
 
-
 ### Labelモデル
 |カラム名|データ型|
 | :---: | :---: |
 |id|integer|
+|name|string|
+
+### Labellingモデル
+|カラム名|データ型|
+| :---: | :---: |
+|id|integer|
 |task_id|integer|
-|user_id|integer|
+|label_id|integer|
 
 ## Herokuデプロイ手順
 
