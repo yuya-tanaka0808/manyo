@@ -1,15 +1,23 @@
-<h1><%= t('view_title.models.task.confirm') %></h1>
+<h1 class = "center"><%= t('view_title.models.task.confirm') %></h1>
 <%= form_with(model: @task, url: confirm_new_or_edit, local: true) do |form| %>
   <%= form.hidden_field :title %>
-  <p><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
+  <p class = "center"><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
   <%= form.hidden_field :content %>
-  <p><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
+  <p class = "center"><%= t('activerecord.attributes.task.content') %>：<%= @task.content %></p>
   <%= form.hidden_field :time_limit %>
-  <p><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
+  <p class = "center"><%= t('activerecord.attributes.task.time_limit') %>：<%= @task.time_limit %></p>
   <%= form.hidden_field :status %>
-  <p><%= t('activerecord.attributes.task.status') %>：<%= @task.status %></p>
+  <p class = "center"><%= t('activerecord.attributes.task.status') %>：<%= @task.status %></p>
   <%= form.hidden_field :priority %>
-  <p><%= t('activerecord.attributes.task.priority') %>：<%= @task.priority %></p>
+  <p class = "center"><%= t('activerecord.attributes.task.priority') %>：<%= @task.priority %></p>
+  <%= form.hidden_field :label %>
+  <p class = "center"><%= t('activerecord.attributes.label.name') %>:
+    <% @task.label_ids.each do |label| %>
+    [<%= label.name %>]
+    <% end %>
+  </p>
+<div class="center">
   <%= form.submit t('helpers.submit.submit') %>
   <%= form.submit t('helpers.select.back'), name: "back" %>
+</div>
 <% end %>

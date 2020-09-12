@@ -34,7 +34,7 @@
       </tr>
     </table>
     <div class="field">
-
+      <%= form.label :label %><%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
     </div>
     <div class="actions">
       <%= form.submit t('helpers.submit.submit') %>
