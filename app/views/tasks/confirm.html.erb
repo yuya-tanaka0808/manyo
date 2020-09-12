@@ -1,5 +1,5 @@
 <h1 class = "center"><%= t('view_title.models.task.confirm') %></h1>
-<%= form_with(model: @task, url: confirm_new_or_edit, local: true) do |form| %>
+<%= form_with(model: @task, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <p class = "center"><%= t('activerecord.attributes.task.title') %>：<%= @task.title %></p>
   <%= form.hidden_field :content %>
@@ -13,7 +13,7 @@
   <%= form.hidden_field :label %>
   <p class = "center"><%= t('activerecord.attributes.label.name') %>:
     <% @task.label_ids.each do |label| %>
-    [<%= label.name %>]
+    <%= label.id%>
     <% end %>
   </p>
 <div class="center">
