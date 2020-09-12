@@ -10,11 +10,13 @@
 <%= f.select :status,[[t('serch.waiting')],
                      [t('serch.working')],
                      [t('serch.completed')]], include_blank: true %>
+<br>
+<% Label.all.each do |label| %>
+  <%= label.name %>:<%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+<% end %>
 <%= f.submit t('serch.do_a_serch') %>
 </div>
 <br>
-<!-- <%= link_to t('serch.sort_by_timelimit'), tasks_path(sort_expired: "true") %> -->
-<!-- <%= link_to t('serch.sort_by_priority'), tasks_path(sort_priority: "true") %> -->
 <% end %>
 <table class = "task_row center">
   <thead>
@@ -55,7 +57,6 @@
   </tbody>
 </table>
 <%= paginate @tasks if @tasks.present? %>
-
   <div class="link center">
     <%= link_to t('view.models.task.new'), new_task_path %>
   </div>
