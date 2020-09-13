@@ -1,6 +1,6 @@
 class LabelsController < ApplicationController
   before_action :set_label, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_user
   # GET /labels
   # GET /labels.json
   def index
@@ -70,5 +70,12 @@ class LabelsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def label_params
       params.require(:label).permit(:name)
+    end
+
+    def check_user
+      unless current_user.admin?
+        flash[:notice] = "管理者以外アクセスできません！"
+        redirect_to root_path
+      end
     end
 end
