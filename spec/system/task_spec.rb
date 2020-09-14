@@ -28,7 +28,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         select 2018, from: 'task_time_limit_1i'
         select '着手中', from: 'task_status'
         click_on '保存する' #new画面
-        click_on '保存する' #confirm画面
         expect(page).to have_content 'testcontent'
         expect(page).to have_content 2018
         expect(page).to have_content '着手中'

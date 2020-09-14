@@ -1,5 +1,6 @@
 class LabelsController < ApplicationController
   before_action :set_label, only: [:show, :edit, :update, :destroy]
+  before_action :current_user
   before_action :check_user
   # GET /labels
   # GET /labels.json
