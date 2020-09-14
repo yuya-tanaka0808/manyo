@@ -17,16 +17,26 @@
         <span class="sr-only">Bootstrap</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <% if logged_in? %>
+          <% if current_user.admin?%>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          <% end %>
+        <% end %>
       </button>
-      <a class="navbar-brand" href="#">Tasks Mnanager
+      <a class="navbar-brand" href="/">Tasks Mnanager
       </a>
     </div>
     <div id="gnavi" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="/"><%= t('view_title.models.task.index') %></a></li>
         <li><a href="/tasks/new"><%= t('view_title.models.task.new') %></a></li>
-        <li><a href="">menu2</a></li>
+        <% if logged_in? %>
+          <% if current_user.admin?%>
+            <li><a href="/admin/users"><%= t('view_title.models.admin_user.index') %></a></li>
+            <li><a href="/labels"><%= t('view_title.models.label.index') %></a></li>
+          <% end %>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -37,6 +47,10 @@
    <% if logged_in? %>
      <%= link_to "Profile", user_path(current_user.id) %>
      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+       <% if current_user.admin?%>
+       <p><%= t('view_title.models.admin_user.login') %></p>
+
+       <% end %>
    <% else %>
      <%= link_to "Sign up", new_user_path %>
      <%= link_to "Login", new_session_path %>
